@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
 //firebase configuration
 const app = initializeApp({
@@ -9,5 +10,7 @@ const app = initializeApp({
   messagingSenderId: import.meta.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: import.meta.env.REACT_APP_APP_ID,
 });
+
+export const auth = getAuth(app);
 
 export default app;
