@@ -5,7 +5,7 @@ import {
   orderByKey,
   query,
   ref,
-  startAt,
+  startAfter,
 } from "firebase/database";
 import { useEffect, useState } from "react";
 
@@ -24,7 +24,7 @@ export default function useVideosList(page) {
         videosRef,
         limitToFirst(9),
         orderByKey(),
-        startAt("" + page)
+        startAfter(String(page))
       );
       try {
         setError(false);
@@ -33,10 +33,8 @@ export default function useVideosList(page) {
         const snapshot = await get(videosQuery);
         setLoading(false);
 
-        console.log(snapshot.val());
-
-        if (snapshot.exists) {
-          setVideos(Object.values(snapshot.val()));
+        if (snapshot.exists && Object.values(snapshot.val())) {
+          setVideos((prev) => [...prev, ...Object.values(snapshot.val())]);
         } else {
           setHasmore(false);
         }
