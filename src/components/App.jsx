@@ -25,10 +25,10 @@ function App() {
               <Route path="/login" element={<Login />} />
             </Route>
             <Route path="/quize" element={<PrivateRoute />}>
-              <Route path="/quize" element={<Quiz />} />
+              <Route path="/quize/:id" element={<Quiz />} />
             </Route>
             <Route path="/result" element={<PrivateRoute />}>
-              <Route path="/result" element={<Result />} />
+              <Route path="/result/:id" element={<Result />} />
             </Route>
             <Route path="*" element={<Error />} />
           </Routes>

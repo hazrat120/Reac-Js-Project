@@ -22,7 +22,7 @@ export default function useVideosList(page) {
       const videosRef = ref(db, "videos");
       const videosQuery = query(
         videosRef,
-        limitToFirst(9),
+        limitToFirst(6),
         orderByKey(),
         startAfter(String(page))
       );
@@ -45,7 +45,9 @@ export default function useVideosList(page) {
       }
     }
 
-    fetchVideos();
+    setTimeout(() => {
+      fetchVideos();
+    }, 1000);
   }, [page]);
 
   return { loading, error, videos, hasMore };
